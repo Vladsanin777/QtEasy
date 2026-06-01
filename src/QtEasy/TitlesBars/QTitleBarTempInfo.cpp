@@ -3,22 +3,25 @@
 
 namespace QtEasy {
     namespace TitlesBars {
-        QTitleBarTempInfo::QTitleBarTempInfo(QWidget * parent) {}
+        QTitleBarTempInfo::QTitleBarTempInfo(QWidget * parent)  :
+                    QTitleBarTempInfo{QString{}, parent} {}
 
         QTitleBarTempInfo::QTitleBarTempInfo(
-                QString title, QWidget * parent) {}
+                QString title, QWidget * parent) :
+                    QTitleBarTempInfo{title, QString{}, parent} {}
 
         QTitleBarTempInfo::QTitleBarTempInfo( 
-                QString title, QString tempInfo, QWidget * parent) {
-            m_title = new QLabelTempInfo{title, tempInfo, this}
-            m_title->setObjectName("title")
+                QString title, QString tempInfo, QWidget * parent) :
+                QTitleBarEmpty{parent} {
+            m_title = new QLabelTempInfo{title, tempInfo, this};
+            m_title->setObjectName("title");
 
             addWidget(m_title);
-            addStrach();
+            addStretch();
         }
 
         QString QTitleBarTempInfo::text(void) {
-            return m_labelTempInfo->text();
+            return m_title->text();
         }
 
         QString QTitleBarTempInfo::tempInfo(void) {
@@ -26,12 +29,12 @@ namespace QtEasy {
         }
 
         void QTitleBarTempInfo::setText(QString text) {
-            m_labelTempInfo->setText(text);
+            m_title->setText(text);
             QTitleBarEmpty::setText(text);
         }
 
         void QTitleBarTempInfo::setTempInfo(QString tempInfo) {
-            m_labelTempInfo->setTempInfo(tempInfo);
+            m_title->setTempInfo(tempInfo);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace QtEasy {
                 } {}
 
         QTitleBarEmpty::QTitleBarEmpty(
-                QSystemsButtons::Functions function,
-                QWidget parent) {
-            m_layout = new QHBoxLayout{QHBoxLayout::RightToLeft, this};
+                int functions, QWidget * parent) {
+            m_layout = new QHBoxLayout{this};
+            m_layout->setDirection(QHBoxLayout::RightToLeft);
 
             setLayout(m_layout);
 
@@ -22,19 +22,19 @@ namespace QtEasy {
             m_systemsButtons->setObjectName("systemsButtons");
 
             m_layout->addWidget(m_systemsButtons);
-            m_layout->addStrach();
+            m_layout->addStretch();
         }
 
         QString QTitleBarEmpty::text(void) {
-            return windowsTitle();
+            return windowTitle();
         }
 
         void QTitleBarEmpty::setText(QString text) {
-            setWindowsTitle(text);
+            setWindowTitle(text);
         }
 
-        void QTitleBarEmpty::addStrach() {
-            m_layout->addStrach();
+        void QTitleBarEmpty::addStretch(void) {
+            m_layout->addStretch();
         }
 
         void QTitleBarEmpty::addWidget(QWidget * widget) {

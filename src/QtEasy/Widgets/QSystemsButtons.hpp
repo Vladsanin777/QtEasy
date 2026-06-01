@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QStyle>
 #include <QHBoxLayout>
 #include <QPushButton>
 

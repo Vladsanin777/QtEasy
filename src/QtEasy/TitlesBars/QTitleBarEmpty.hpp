@@ -34,7 +34,7 @@ namespace QtEasy {
         public slots:
             virtual void setText(QString text);
 
-            void addStrach();
+            void addStretch(void);
 
             void addWidget(QWidget * widget);
         };

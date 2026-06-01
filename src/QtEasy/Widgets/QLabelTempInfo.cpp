@@ -4,28 +4,39 @@
 namespace QtEasy {
     namespace Widgets {
         QLabelTempInfo::QLabelTempInfo(
-                QWidget * parent) {}
+                QWidget * parent) : QLabelTempInfo{LABEL, parent} {}
 
         QLabelTempInfo::QLabelTempInfo(
-                Mode mode, QWidget * parent) {}
+                Mode mode, QWidget * parent) :
+                    QLabelTempInfo{QString{}, mode, parent} {}
 
         QLabelTempInfo::QLabelTempInfo(
-                QString label, Mode mode,
-                QWidget * parent) {}
+                QString label, QWidget * parent) :
+                    QLabelTempInfo{label, QString{}, 
+                        QLabelTempInfo::Mode::LABEL, parent} {}
+
+        QLabelTempInfo::QLabelTempInfo(
+                QString label, Mode mode, QWidget * parent) :
+                    QLabelTempInfo{label, QString{}, mode, parent} {}
+
+        QLabelTempInfo::QLabelTempInfo(
+                QString label, QString tempInfo, QWidget * parent) :
+                    QLabelTempInfo{label, tempInfo, 
+                        QLabelTempInfo::Mode::LABEL, parent} {}
 
         QLabelTempInfo::QLabelTempInfo(QString label, QString tempInfo,
-                Mode mode, QWidget * parent) {
+                Mode mode, QWidget * parent) : QWidget{parent} {
             m_label = new QLabel{label, this};
             m_label->setObjectName("label");
 
             m_tempInfo = new QTempInfo{tempInfo, this};
             m_tempInfo->setObjectName("tempInfo");
             
-            connect(m_log, SIGNAL(Log::closed), this, SLOT(TitleOrLog::title));
+            connect(m_tempInfo, SIGNAL(Log::closed), this, SLOT(TitleOrLog::title));
             setMode(mode);
         }
 
-        void QLabelTempInfo::mode() {
+        QLabelTempInfo::Mode QLabelTempInfo::mode(void) {
             return m_mode;
         }
 
@@ -51,16 +62,16 @@ namespace QtEasy {
             m_mode = mode;
         }
 
-        void QLabelTempInfo::switchLabel() {
+        void QLabelTempInfo::switchLabel(void) {
             m_label->show();
             m_tempInfo->hide();
-            m_mode = TITLE;
+            m_mode = LABEL;
         }
 
         void QLabelTempInfo::switchTempInfo(void) {
             m_label->hide();
             m_tempInfo->show();
-            m_mode = LOG;
+            m_mode = TEMP_INFO;
         }
 
         void QLabelTempInfo::setTempInfo(QString text) {
@@ -68,7 +79,7 @@ namespace QtEasy {
         }
 
         void QLabelTempInfo::setText(QString text) {
-            m_label->setText(title);
+            m_label->setText(text);
         }
     }
 }

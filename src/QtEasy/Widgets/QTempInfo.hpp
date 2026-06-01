@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include <QString>
+#include <QClipboard>
+#include <QApplication>
 #include <QStyle>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -13,26 +15,26 @@ namespace QtEasy {
         class QTempInfo : public QWidget {
             Q_OBJECT
 
-        private:
-            QHBoxLayout * m_layout{nullptr};
-            QLabel * m_label{nullptr};
-            QPushButton * m_close{nullptr};
-            QPushButton * m_copy{nullptr};
-
+        public:
             enum Functions {
                 NONE = 0,
                 CLOSE = 1,
                 COPY = 2,
             };
 
+        private:
+            QHBoxLayout * m_layout{nullptr};
+            QLabel * m_label{nullptr};
+            QPushButton * m_close{nullptr};
+            QPushButton * m_copy{nullptr};
+
         public:
-            QTempInfo(QWidget * parent = nullptr) : QTempInfo{QString{}, parent};
+            QTempInfo(QWidget * parent = nullptr);
 
-            QTempInfo(QString label = {}, QWidget * parent = nullptr) :
-                    QLog{label, CLOSE | COPY, parent};
+            QTempInfo(QString label = {}, QWidget * parent = nullptr);
 
-            QTempInfo(QString label = {}, Functions functions = {CLOSE | COPY},
-                    QWidget * parent = nullptr) : QWidget{parent};
+            QTempInfo(QString label = {}, int functions = {CLOSE | COPY},
+                    QWidget * parent = nullptr);
 
             QString text();
 
@@ -43,7 +45,7 @@ namespace QtEasy {
             void setText(QString text);
 
         private slots:
-            void close(void) override;
+            void close(void);
 
             void copy();
         };

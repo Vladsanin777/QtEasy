@@ -14,32 +14,34 @@ namespace QtEasy {
         class QLabelTempInfo : public QWidget {
             Q_OBJECT
 
-        private:
-            QLabel * m_label{nullptr};
-            QTempInfo * m_tempInfo{nullptr};
-            Mode m_mode{NONE};
-
         public:
             enum Mode {
                 LABEL,
                 TEMP_INFO,
             };
 
-            QLabelTempInfo(QWidget * parent = nullptr) :
-                    QLabelTempInfo{Title, parent};
+        private:
+            QLabel * m_label{nullptr};
+            QTempInfo * m_tempInfo{nullptr};
+            Mode m_mode{LABEL};
 
-            QLabelTempInfo(Mode mode = {Title}, QWidget * parent = nullptr) :
-                    QLabelTempInfo{QString{}, mode, parent};
+        public:
+            QLabelTempInfo(QWidget * parent = nullptr);
 
-            QLabelTempInfo(QString label = {}, Mode mode = {TITLE},
-                    QWidget * parent = nullptr) :
-                    QLabelTempInfo{label, QString{}, mode, parent};
+            QLabelTempInfo(Mode mode = {LABEL}, QWidget * parent = nullptr);
+
+            QLabelTempInfo(QString label = {}, QWidget * parent = nullptr);
+
+            QLabelTempInfo(QString label = {}, Mode mode = {LABEL},
+                    QWidget * parent = nullptr);
 
             QLabelTempInfo(QString label = {}, QString tempInfo = {},
-                    Mode mode = {TITLE}, QWidget * parent = nullptr) :
-                    QWidget{parent};
+                    QWidget * parent = nullptr);
 
-            void mode();
+            QLabelTempInfo(QString label = {}, QString tempInfo = {},
+                    Mode mode = {LABEL}, QWidget * parent = nullptr);
+
+            Mode mode(void);
 
             QString tempInfo(void);
 
@@ -48,7 +50,7 @@ namespace QtEasy {
             void setMode(Mode mode);
 
         public slots:
-            void switchLabel();
+            void switchLabel(void);
 
             void switchTempInfo(void);
 

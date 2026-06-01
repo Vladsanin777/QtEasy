@@ -15,14 +15,6 @@ namespace QtEasy {
             addStrach();
         }
 
-        void QTitleBar::addWidget(QWidget * widget) {
-            m_layout->addWidget(widget);
-        }
-
-        void QTitleBar::addStrach() {
-            m_layout->addStrach();
-        }
-
         QString QTitleBar::text(void) {
             return m_title->text();
         }
