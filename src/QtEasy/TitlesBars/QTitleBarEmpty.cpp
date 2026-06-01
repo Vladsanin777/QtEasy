@@ -1,64 +1,44 @@
-#include <QWidget>
-#include <QStyle>
-#include <QHBoxLayout>
-#include <QtEasy/Widgets/QSystemsButtons.hpp>
+#include <QtEasy/TitlesBars/QTitleBarEmpty.hpp>
 
 
 namespace QtEasy {
     namespace TitlesBars {
+        QTitleBarEmpty::QTitleBarEmpty(QWidget * parent) :
+                QTitleBarEmpty{
+                    QSystemsButtons::Functions::MIN |
+                    QSystemsButtons::Functions::MAX |
+                    QSystemsButtons::Functions::CLOSE,
+                    parent
+                } {}
 
-        using QtEasy::Widgets::QSystemsButtons;
+        QTitleBarEmpty::QTitleBarEmpty(
+                QSystemsButtons::Functions function,
+                QWidget parent) {
+            m_layout = new QHBoxLayout{QHBoxLayout::RightToLeft, this};
 
-        class QTitleBarEmpty : public QWidget {
-            Q_OBJECT
+            setLayout(m_layout);
 
-        private:
-            QHBoxLayout * m_layout{nullptr};
-            QSystemsButtons * m_systemsButtons{nullptr};
+            m_systemsButtons = new QSystemsButtons{this};
+            m_systemsButtons->setObjectName("systemsButtons");
 
-        public:
-            QTitleBarEmpty(QWidget * parent = nullptr) :
-                    QTitleBarEmpty{
-                        QSystemsButtons::Functions::MIN |
-                        QSystemsButtons::Functions::MAX |
-                        QSystemsButtons::Functions::CLOSE,
-                        parent
-                    } {}
-            QTitleBarEmpty(
-                    QSystemsButtons::Functions function = {
-                        QSystemsButtons::Functions::MIN |
-                        QSystemsButtons::Functions::MAX |
-                        QSystemsButtons::Functions::CLOSE
-                    },
-                    QWidget parent = nullptr) : QWidget{parent} {
-                m_layout = new QHBoxLayout{QHBoxLayout::RightToLeft, this};
+            m_layout->addWidget(m_systemsButtons);
+            m_layout->addStrach();
+        }
 
-                setLayout(m_layout);
+        QString QTitleBarEmpty::text(void) {
+            return windowsTitle();
+        }
 
-                m_systemsButtons = new QSystemsButtons{this};
-                m_systemsButtons->setObjectName("systemsButtons");
+        void QTitleBarEmpty::setText(QString text) {
+            setWindowsTitle(text);
+        }
 
-                m_layout->addWidget(m_systemsButtons);
-                m_layout->addStrach();
-            }
+        void QTitleBarEmpty::addStrach() {
+            m_layout->addStrach();
+        }
 
-            virtual QString text(void) {
-                return windowsTitle();
-            }
-
-        public slots:
-
-            virtual QString setText(void) {
-                return windowsTitle();
-            }
-
-            void addStrach() {
-                m_layout->addStrach();
-            }
-
-            void addWidget(QWidget * widget) {
-                m_layout->addWidget(widget);
-            }
-        };
+        void QTitleBarEmpty::addWidget(QWidget * widget) {
+            m_layout->addWidget(widget);
+        }
     }
 }

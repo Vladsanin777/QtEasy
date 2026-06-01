@@ -1,0 +1,43 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(QtEasy VERSION 1.0.0 LANGUAGES CXX)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(BUILD_SHARED_LIBS ON)
+
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+
+set(PROJECT_SOURCES
+    src/QtEasy/TitlesBars/QTitleBar.cpp
+    src/QtEasy/TitlesBars/QTitleBar.hpp
+    src/QtEasy/TitlesBars/QTitleBarEmpty.cpp
+    src/QtEasy/TitlesBars/QTitleBarEmpty.hpp
+    src/QtEasy/TitlesBars/QTitleBarTempInfo.cpp
+    src/QtEasy/TitlesBars/QTitleBarTempInfo.hpp
+    
+    src/QtEasy/Widgets/QLabelTempInfo.cpp
+    src/QtEasy/Widgets/QLabelTempInfo.hpp
+    src/QtEasy/Widgets/QSystemsButtons.cpp
+    src/QtEasy/Widgets/QSystemsButtons.hpp
+    src/QtEasy/Widgets/QTempInfo.cpp
+    src/QtEasy/Widgets/QTempInfo.hpp
+)
+
+add_library(QtEasy SHARED ${PROJECT_SOURCES})
+
+target_include_directories(QtEasy PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+)
+
+target_link_libraries(QtEasy PUBLIC 
+    Qt6::Core
+    Qt6::Widgets
+)
+
+target_compile_definitions(QtEasy PRIVATE QTEASY_LIBRARY)

@@ -1,57 +1,37 @@
-#include <QString>
-#include <QStyle>
-#include <QLabel>
-#include <QtEasy/Widgets/QLabelTempInfo>
-#include <QtEasy/TitlesBars/QTitleBarEmpty>
+#include <QtEasy/TitlesBars/QTitleBarTempInfo.hpp>
 
 
 namespace QtEasy {
     namespace TitlesBars {
+        QTitleBarTempInfo::QTitleBarTempInfo(QWidget * parent) {}
 
-        using QtEasy::Widgets::QLabelTempInfo;
-        using QtEasy::TitlesBars::QTitleBarEmpty;
+        QTitleBarTempInfo::QTitleBarTempInfo(
+                QString title, QWidget * parent) {}
 
-        class QTitleBarTempInfo : public QTitleBarEmpty {
-            Q_OBJECT
+        QTitleBarTempInfo::QTitleBarTempInfo( 
+                QString title, QString tempInfo, QWidget * parent) {
+            m_title = new QLabelTempInfo{title, tempInfo, this}
+            m_title->setObjectName("title")
 
-        private:
-            QLabelTempInfo * m_title{nullptr};
+            addWidget(m_title);
+            addStrach();
+        }
 
-        public:
-            QTitleBarTempInfo(QWidget * parent = nullptr) :
-                    QTitleBarTempInfo{QString{}, parent} {}
+        QString QTitleBarTempInfo::text(void) {
+            return m_labelTempInfo->text();
+        }
 
-            QTitleBarTempInfo(QString title = {}, QWidget * parent = nullptr) :
-                    QTitleBarTempInfo{label, QString{}, parent} {}
+        QString QTitleBarTempInfo::tempInfo(void) {
+            return m_title->tempInfo();
+        }
 
-            QTitleBarTempInfo( 
-                    QString title = {}, QString tempInfo = {},
-                    QWidget * parent = nullptr) : QTitleBarEmpty{parent} {
+        void QTitleBarTempInfo::setText(QString text) {
+            m_labelTempInfo->setText(text);
+            QTitleBarEmpty::setText(text);
+        }
 
-                m_title->QTitleBarEmpty{title, tempInfo, this}
-                m_title->setObjectName("title")
-
-                addWidget(m_title);
-                addStrach();
-            }
-
-            QString text(void) override {
-                return m_labelTempInfo->text();
-            }
-
-            QString tempInfo(void) {
-                return m_title->tempInfo();
-            }
-
-        public slot:
-            void setText(QString text) {
-                m_labelTempInfo->setText(text);
-                QTitleBarEmpty::setText(text);
-            }
-
-            void setTempInfo(QString tempInfo) {
-                m_labelTempInfo->setTempInfo(tempInfo);
-            }
-        };
+        void QTitleBarTempInfo::setTempInfo(QString tempInfo) {
+            m_labelTempInfo->setTempInfo(tempInfo);
+        }
     }
 }

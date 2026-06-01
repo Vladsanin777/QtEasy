@@ -1,97 +1,74 @@
-#include <QWidget>
-#include <QString>
-#include <QLabel>
-#include <QtEasy/Widgets/QTempInfo.hpp>
+#include <QtEasy/Widgets/QLabelTempInfo.hpp>
 
 
 namespace QtEasy {
     namespace Widgets {
+        QLabelTempInfo::QLabelTempInfo(
+                QWidget * parent) {}
 
-        using QtEasy::Widgets::QTempInfo;
+        QLabelTempInfo::QLabelTempInfo(
+                Mode mode, QWidget * parent) {}
 
-        class QLabelTempInfo : public QWidget {
-            Q_OBJECT
+        QLabelTempInfo::QLabelTempInfo(
+                QString label, Mode mode,
+                QWidget * parent) {}
 
-        private:
-            QLabel * m_label{nullptr};
-            QTempInfo * m_tempInfo{nullptr};
-            Mode m_mode{NONE};
+        QLabelTempInfo::QLabelTempInfo(QString label, QString tempInfo,
+                Mode mode, QWidget * parent) {
+            m_label = new QLabel{label, this};
+            m_label->setObjectName("label");
 
-        public:
-            enum Mode {
-                LABEL,
-                TEMP_INFO,
-            };
+            m_tempInfo = new QTempInfo{tempInfo, this};
+            m_tempInfo->setObjectName("tempInfo");
+            
+            connect(m_log, SIGNAL(Log::closed), this, SLOT(TitleOrLog::title));
+            setMode(mode);
+        }
 
-            QLabelTempInfo(QWidget * parent = nullptr) :
-                    QLabelTempInfo{Title, parent} {}
+        void QLabelTempInfo::mode() {
+            return m_mode;
+        }
 
-            QLabelTempInfo(Mode mode = {Title}, QWidget * parent = nullptr) :
-                    QLabelTempInfo{QString{}, mode, parent} {}
+        QString QLabelTempInfo::tempInfo(void) {
+            return m_tempInfo->text();
+        }
 
-            QLabelTempInfo(QString label = {}, Mode mode = {TITLE},
-                    QWidget * parent = nullptr) :
-                    QLabelTempInfo{label, QString{}, mode, parent} {}
+        QString QLabelTempInfo::text(void) {
+            return m_label->text();
+        }
 
-            QLabelTempInfo(QString label = {}, QString tempInfo = {},
-                    Mode mode = {TITLE}, QWidget * parent = nullptr) :
-                    QWidget{parent} {
-                m_label = new QLabel{label, this};
-                m_label->setObjectName("label");
-
-                m_tempInfo = new QTempInfo{tempInfo, this};
-                m_tempInfo->setObjectName("tempInfo");
-                
-                connect(m_log, SIGNAL(Log::closed), this, SLOT(TitleOrLog::title));
-                setMode(mode);
+        void QLabelTempInfo::setMode(Mode mode) {
+            switch (mode) {
+                case LABEL:
+                    switchLabel();
+                    break;
+                case TEMP_INFO:
+                    switchTempInfo();
+                    break;
+                default:
+                    return;
             }
+            m_mode = mode;
+        }
 
-            void mode() {
-                return m_mode;
-            }
+        void QLabelTempInfo::switchLabel() {
+            m_label->show();
+            m_tempInfo->hide();
+            m_mode = TITLE;
+        }
 
-            QString tempInfo(void) {
-                return m_tempInfo->text();
-            }
+        void QLabelTempInfo::switchTempInfo(void) {
+            m_label->hide();
+            m_tempInfo->show();
+            m_mode = LOG;
+        }
 
-            QString text(void) {
-                return m_label->text();
-            }
+        void QLabelTempInfo::setTempInfo(QString text) {
+            m_tempInfo->setText(text);
+        }
 
-            void setMode(Mode mode) {
-                switch (mode) {
-                    case LABEL:
-                        switchLabel();
-                        break;
-                    case TEMP_INFO:
-                        switchTempInfo();
-                        break;
-                    default:
-                        return;
-                }
-                m_mode = mode;
-            }
-
-        public slots:
-            void switchLabel() {
-                m_label->show();
-                m_tempInfo->hide();
-                m_mode = TITLE;
-            }
-
-            void switchTempInfo(void) {
-                m_label->hide();
-                m_tempInfo->show();
-                m_mode = LOG;
-            }
-
-            void setTempInfo(QString text) {
-                m_tempInfo->setText(text);
-            }
-
-            void setText(QString text) {
-                m_label->setText(title);
-            }
-        };
+        void QLabelTempInfo::setText(QString text) {
+            m_label->setText(title);
+        }
     }
 }

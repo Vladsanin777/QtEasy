@@ -1,45 +1,35 @@
-#include <QWidget>
-#include <QLabel>
-#include <QtEasy/TitlesBars/QTitleBarEmpty.hpp>
+#include <QtEasy/TitlesBars/QTitleBar.hpp>
 
 namespace QtEasy {
     namespace TitlesBars {
-        class QTitleBar : public QTitleBarEmpty {
-            Q_OBJECT
+        QTitleBar::QTitleBar(QWidget * parent) :
+                    QTitleBar{QString{}, parent} {}
 
-        private:
-            QLabel m_title{};
+        QTitleBar::QTitleBar(QString title, 
+                QWidget * parent) : QTitleBarEmpty{parent} {
+            m_title = new QLabel{title, this};
 
-        public:
-            QTitleBar(QWidget * parent = nullptr) : QTitleBar{QString{}, parent} {}
+            m_title->setObjectName("title");
+            
+            addWidget(m_title);
+            addStrach();
+        }
 
-            QTitleBar(QString title = {}, 
-                    QWidget * parent = nullptr) : QTitleBarEmpty{parent} {
-                m_title = new QLabel{title, this};
+        void QTitleBar::addWidget(QWidget * widget) {
+            m_layout->addWidget(widget);
+        }
 
-                m_title->setObjectName("title");
-                
-                addWidget(m_title);
-                addStrach();
-            }
+        void QTitleBar::addStrach() {
+            m_layout->addStrach();
+        }
 
-            void addWidget(QWidget * widget) {
-                m_layout->addWidget(widget);
-            }
+        QString QTitleBar::text(void) {
+            return m_title->text();
+        }
 
-            void addStrach() {
-                m_layout->addStrach();
-            }
-
-            QString text(void) override {
-                return m_title->text();
-            }
-
-        public slot:
-            void setText(QString text) override {
-                m_title->setText(text);
-                QTitleBarEmpty::setText(text);
-            }
-        };
+        void QTitleBar::setText(QString text) {
+            m_title->setText(text);
+            QTitleBarEmpty::setText(text);
+        }
     }
 }
