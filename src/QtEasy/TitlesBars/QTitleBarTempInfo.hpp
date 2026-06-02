@@ -22,15 +22,29 @@ namespace QtEasy {
         public:
             QTitleBarTempInfo(QWidget * parent = nullptr);
 
+            QTitleBarTempInfo(QLabelTempInfo::Mode mode =
+                    {QLabelTempInfo::Mode::LABEL}, QWidget * parent = nullptr);
+
             QTitleBarTempInfo(QString title = {}, QWidget * parent = nullptr);
+
+            QTitleBarTempInfo(QString title = {}, QString tempInfo = {},
+                    QWidget * parent = nullptr);
+
+            QTitleBarTempInfo(QString title = {}, QLabelTempInfo::Mode mode =
+                    {QLabelTempInfo::Mode::LABEL}, QWidget * parent = nullptr);
 
             QTitleBarTempInfo( 
                     QString title = {}, QString tempInfo = {},
+                    QLabelTempInfo::Mode mode = {QLabelTempInfo::Mode::LABEL},
                     QWidget * parent = nullptr);
 
             QString text(void) override;
 
             QString tempInfo(void);
+
+            void switchText(void);
+
+            void switchTempInfo(void);
 
         public slots:
             void setText(QString text) override;

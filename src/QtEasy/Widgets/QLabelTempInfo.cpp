@@ -26,13 +26,19 @@ namespace QtEasy {
 
         QLabelTempInfo::QLabelTempInfo(QString label, QString tempInfo,
                 Mode mode, QWidget * parent) : QWidget{parent} {
+            m_layout = new QHBoxLayout{this};
+
             m_label = new QLabel{label, this};
             m_label->setObjectName("label");
 
+            m_layout->addWidget(m_label);
+
             m_tempInfo = new QTempInfo{tempInfo, this};
             m_tempInfo->setObjectName("tempInfo");
+
+            m_layout->addWidget(m_tempInfo);
             
-            connect(m_tempInfo, SIGNAL(Log::closed), this, SLOT(TitleOrLog::title));
+            connect(m_tempInfo, &QTempInfo::closed, this, &QLabelTempInfo::switchText);
             setMode(mode);
         }
 
@@ -51,7 +57,7 @@ namespace QtEasy {
         void QLabelTempInfo::setMode(Mode mode) {
             switch (mode) {
                 case LABEL:
-                    switchLabel();
+                    switchText();
                     break;
                 case TEMP_INFO:
                     switchTempInfo();
@@ -62,7 +68,7 @@ namespace QtEasy {
             m_mode = mode;
         }
 
-        void QLabelTempInfo::switchLabel(void) {
+        void QLabelTempInfo::switchText(void) {
             m_label->show();
             m_tempInfo->hide();
             m_mode = LABEL;

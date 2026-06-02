@@ -30,6 +30,8 @@ namespace QtEasy {
 
             QSystemsButtons(int functions = {MIN | MAX | CLOSE},
                     QWidget * parent = nullptr);
+
+            void maximizeButton(void);
         };
     }
 }

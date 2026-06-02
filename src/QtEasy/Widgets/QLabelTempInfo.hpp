@@ -21,6 +21,7 @@ namespace QtEasy {
             };
 
         private:
+            QHBoxLayout * m_layout{nullptr};
             QLabel * m_label{nullptr};
             QTempInfo * m_tempInfo{nullptr};
             Mode m_mode{LABEL};
@@ -50,7 +51,7 @@ namespace QtEasy {
             void setMode(Mode mode);
 
         public slots:
-            void switchLabel(void);
+            void switchText(void);
 
             void switchTempInfo(void);
 

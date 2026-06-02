@@ -12,7 +12,7 @@ namespace QtEasy {
             m_title->setObjectName("title");
             
             addWidget(m_title);
-            addStrach();
+            addStretch();
         }
 
         QString QTitleBar::text(void) {

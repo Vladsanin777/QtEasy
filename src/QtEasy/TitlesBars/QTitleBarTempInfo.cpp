@@ -3,17 +3,30 @@
 
 namespace QtEasy {
     namespace TitlesBars {
-        QTitleBarTempInfo::QTitleBarTempInfo(QWidget * parent)  :
-                    QTitleBarTempInfo{QString{}, parent} {}
+        QTitleBarTempInfo::QTitleBarTempInfo(QWidget * parent) :
+                QTitleBarTempInfo{QString{}, parent} {}
+
+        QTitleBarTempInfo::QTitleBarTempInfo(
+                QLabelTempInfo::Mode mode, QWidget * parent) :
+                QTitleBarTempInfo{QString{}, mode, parent} {}
 
         QTitleBarTempInfo::QTitleBarTempInfo(
                 QString title, QWidget * parent) :
-                    QTitleBarTempInfo{title, QString{}, parent} {}
+                QTitleBarTempInfo{title, QString{}, parent} {}
 
-        QTitleBarTempInfo::QTitleBarTempInfo( 
+        QTitleBarTempInfo::QTitleBarTempInfo(
                 QString title, QString tempInfo, QWidget * parent) :
-                QTitleBarEmpty{parent} {
-            m_title = new QLabelTempInfo{title, tempInfo, this};
+                QTitleBarTempInfo{title, tempInfo,
+                    QLabelTempInfo::Mode::LABEL, parent} {}
+
+        QTitleBarTempInfo::QTitleBarTempInfo(QString title,
+                QLabelTempInfo::Mode mode, QWidget * parent) :
+                QTitleBarTempInfo{title, QString{}, mode, parent} {}
+
+        QTitleBarTempInfo::QTitleBarTempInfo(QString title,
+                QString tempInfo, QLabelTempInfo::Mode mode, QWidget * parent) :
+                QTitleBarEmpty{title, parent} {
+            m_title = new QLabelTempInfo{title, tempInfo, mode, this};
             m_title->setObjectName("title");
 
             addWidget(m_title);
@@ -26,6 +39,14 @@ namespace QtEasy {
 
         QString QTitleBarTempInfo::tempInfo(void) {
             return m_title->tempInfo();
+        }
+
+        void QTitleBarTempInfo::switchText(void) {
+            m_title->switchText();
+        }
+
+        void QTitleBarTempInfo::switchTempInfo(void) {
+            m_title->switchTempInfo();
         }
 
         void QTitleBarTempInfo::setText(QString text) {

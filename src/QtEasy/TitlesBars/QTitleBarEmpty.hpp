@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include <QStyle>
+#include <QMouseEvent>
+#include <QWindow>
 #include <QHBoxLayout>
 #include <QtEasy/Widgets/QSystemsButtons.hpp>
 
@@ -17,17 +19,26 @@ namespace QtEasy {
         private:
             QHBoxLayout * m_layout{nullptr};
             QSystemsButtons * m_systemsButtons{nullptr};
+            Qt::Edges m_resizeEdge{Qt::Edges{}};
+            const int m_borderWidth{8};
 
         public:
             QTitleBarEmpty(QWidget * parent = nullptr);
 
             QTitleBarEmpty(
-                    int function = {
+                    int functions = {
                         QSystemsButtons::Functions::MIN |
                         QSystemsButtons::Functions::MAX |
                         QSystemsButtons::Functions::CLOSE
-                    },
-                    QWidget * parent = nullptr);
+                    }, QWidget * parent = nullptr);
+
+            QTitleBarEmpty(QString title = {}, QWidget * parent = nullptr);
+
+            QTitleBarEmpty(QString title = {}, int functions = {
+                        QSystemsButtons::Functions::MIN |
+                        QSystemsButtons::Functions::MAX |
+                        QSystemsButtons::Functions::CLOSE
+                    }, QWidget * parent = nullptr);
 
             virtual QString text(void);
 
@@ -37,6 +48,15 @@ namespace QtEasy {
             void addStretch(void);
 
             void addWidget(QWidget * widget);
+
+        protected:
+            void mousePressEventWindow(QMouseEvent *event);
+
+            void mouseDoubleClickEvent(QMouseEvent *event) override;
+
+            bool eventFilter(QObject *watched, QEvent *event) override;
+
+            void mouseMoveEventWindow(QMouseEvent *event);
         };
     }
 }

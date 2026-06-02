@@ -15,14 +15,13 @@ namespace QtEasy {
             m_layout = new QHBoxLayout{this};
             m_layout->setContentsMargins(5, 5, 5, 5);
             m_layout->setSpacing(5);
-            setLayout(m_layout);
 
             if (functions & CLOSE) {
                 m_close = new QPushButton{"⨉", this};
                 m_close->setFixedSize(30, 30);
                 m_close->setStyleSheet("close");
                 m_close->setContentsMargins(0, 0, 0, 0);
-                connect(m_close, SIGNAL(QPushButton::clicked), this, SLOT(Log::close));
+                connect(m_close, &QPushButton::clicked, this, &QTempInfo::close);
                 m_layout->addWidget(m_close);
             }
 
@@ -37,7 +36,7 @@ namespace QtEasy {
                 m_copy->setFixedSize(30, 30);
                 m_copy->setStyleSheet("copy");
                 m_copy->setContentsMargins(0, 0, 0, 0);
-                connect(m_copy, SIGNAL(QPushButton::clicked), this, SLOT(Log::copy));
+                connect(m_copy, &QPushButton::clicked, this, &QTempInfo::copy);
                 m_layout->addWidget(m_copy);
             }
         }
@@ -61,9 +60,9 @@ namespace QtEasy {
         void QTempInfo::copy() {
             QClipboard* clipboard = QApplication::clipboard();
 
-            const char * errorMessage = qPrintable(m_label->text());
+            const char * tempInfo = qPrintable(m_label->text());
 
-            clipboard->setText(errorMessage);
+            clipboard->setText(tempInfo);
         }
     }
 }

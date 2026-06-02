@@ -19,10 +19,6 @@ namespace QtEasy {
             QTitleBar(QString title = {}, 
                     QWidget * parent = nullptr);
 
-            void addWidget(QWidget * widget);
-
-            void addStrach();
-
             QString text(void) override;
 
         public slots:
