@@ -50,6 +50,15 @@ namespace QtEasy {
             void setText(QString text) override;
 
             void setTempInfo(QString tempInfo);
+
+            void upShowText(void);
+
+            void upShowTempInfo(void);
+
+        signals:
+            void showText(void);
+
+            void showTempInfo(void);
         };
     }
 }

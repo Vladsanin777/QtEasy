@@ -29,6 +29,11 @@ namespace QtEasy {
             m_title = new QLabelTempInfo{title, tempInfo, mode, this};
             m_title->setObjectName("title");
 
+            connect(m_title, &QLabelTempInfo::showText,
+                    this, &QTitleBarTempInfo::upShowText);
+            connect(m_title, &QLabelTempInfo::showTempInfo,
+                    this, &QTitleBarTempInfo::upShowTempInfo);
+
             addWidget(m_title);
             addStretch();
         }
@@ -43,10 +48,12 @@ namespace QtEasy {
 
         void QTitleBarTempInfo::switchText(void) {
             m_title->switchText();
+            emit showText();
         }
 
         void QTitleBarTempInfo::switchTempInfo(void) {
             m_title->switchTempInfo();
+            emit showTempInfo();
         }
 
         void QTitleBarTempInfo::setText(QString text) {
@@ -56,6 +63,14 @@ namespace QtEasy {
 
         void QTitleBarTempInfo::setTempInfo(QString tempInfo) {
             m_title->setTempInfo(tempInfo);
+        }
+
+        void QTitleBarTempInfo::upShowText(void) {
+            emit showText();
+        }
+
+        void QTitleBarTempInfo::upShowTempInfo(void) {
+            emit showTempInfo();
         }
     }
 }

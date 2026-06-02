@@ -64,6 +64,11 @@ namespace QtEasy {
 
         protected:
             void paintEvent(QPaintEvent *event) override;
+
+        signals:
+            void showText(void);
+
+            void showTempInfo(void);
         };
     }
 }

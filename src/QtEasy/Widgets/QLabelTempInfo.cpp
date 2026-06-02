@@ -76,12 +76,14 @@ namespace QtEasy {
             m_label->show();
             m_tempInfo->hide();
             m_mode = LABEL;
+            emit showText();
         }
 
         void QLabelTempInfo::switchTempInfo(void) {
             m_label->hide();
             m_tempInfo->show();
             m_mode = TEMP_INFO;
+            emit showTempInfo();
         }
 
         void QLabelTempInfo::setTempInfo(QString text) {

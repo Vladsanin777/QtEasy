@@ -43,7 +43,7 @@ namespace QtEasy {
             if (functions & CLOSE) {
                 m_close = new QPushButton{this};
                 m_close->setFixedSize(30, 30);
-                m_close->setStyleSheet("close");
+                m_close->setObjectName("close");
                 m_close->setContentsMargins(0, 0, 0, 0);
                 m_close->setIcon(style()->standardIcon(QStyle::SP_TitleBarCloseButton));
                 connect(m_close, &QPushButton::clicked, window(), &QWidget::close);
