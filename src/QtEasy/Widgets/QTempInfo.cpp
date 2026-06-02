@@ -10,11 +10,12 @@ namespace QtEasy {
 
         QTempInfo::QTempInfo(QString label, int functions,
                 QWidget * parent) : QWidget{parent} {
-            setFixedHeight(40);
+            setContentsMargins(0, 0, 0, 0);
+            setFixedHeight(30);
 
             m_layout = new QHBoxLayout{this};
-            m_layout->setContentsMargins(5, 5, 5, 5);
             m_layout->setSpacing(5);
+            m_layout->setContentsMargins(0, 0, 0, 0);
 
             if (functions & CLOSE) {
                 m_close = new QPushButton{"⨉", this};
@@ -63,6 +64,13 @@ namespace QtEasy {
             const char * tempInfo = qPrintable(m_label->text());
 
             clipboard->setText(tempInfo);
+        }
+
+        void QTempInfo::paintEvent(QPaintEvent *event) {
+            QStyleOption opt = QStyleOption{};
+            opt.initFrom(this);
+            QPainter p(this);
+            style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
         }
     }
 }

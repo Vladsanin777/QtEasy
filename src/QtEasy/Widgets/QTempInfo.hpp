@@ -2,12 +2,14 @@
 
 #include <QWidget>
 #include <QString>
-#include <QClipboard>
-#include <QApplication>
 #include <QStyle>
+#include <QStyleOption>
+#include <QPainter>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QClipboard>
+#include <QApplication>
 
 
 namespace QtEasy {
@@ -48,6 +50,9 @@ namespace QtEasy {
             void close(void);
 
             void copy();
+
+        protected:
+            void paintEvent(QPaintEvent *event) override;
         };
     }
 }

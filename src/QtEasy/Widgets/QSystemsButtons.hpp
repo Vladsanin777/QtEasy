@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QString>
 #include <QStyle>
+#include <QStyleOption>
+#include <QPainter>
 #include <QHBoxLayout>
 #include <QPushButton>
 
@@ -32,6 +34,9 @@ namespace QtEasy {
                     QWidget * parent = nullptr);
 
             void maximizeButton(void);
+
+        protected:
+            void paintEvent(QPaintEvent *event) override;
         };
     }
 }

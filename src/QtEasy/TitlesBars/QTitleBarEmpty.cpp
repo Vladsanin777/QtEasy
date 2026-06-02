@@ -142,5 +142,12 @@ namespace QtEasy {
 
             QWidget::mouseMoveEvent(event);
         }
+
+        void QTitleBarEmpty::paintEvent(QPaintEvent *event) {
+            QStyleOption opt = QStyleOption{};
+            opt.initFrom(this);
+            QPainter p(this);
+            style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+        }
     }
 }

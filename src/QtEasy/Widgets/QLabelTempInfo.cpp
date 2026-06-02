@@ -26,7 +26,11 @@ namespace QtEasy {
 
         QLabelTempInfo::QLabelTempInfo(QString label, QString tempInfo,
                 Mode mode, QWidget * parent) : QWidget{parent} {
+            setContentsMargins(0, 0, 0, 0);
+
             m_layout = new QHBoxLayout{this};
+
+            m_layout->setContentsMargins(0, 0, 0, 0);
 
             m_label = new QLabel{label, this};
             m_label->setObjectName("label");
@@ -86,6 +90,13 @@ namespace QtEasy {
 
         void QLabelTempInfo::setText(QString text) {
             m_label->setText(text);
+        }
+
+        void QLabelTempInfo::paintEvent(QPaintEvent *event) {
+            QStyleOption opt = QStyleOption{};
+            opt.initFrom(this);
+            QPainter p(this);
+            style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
         }
     }
 }

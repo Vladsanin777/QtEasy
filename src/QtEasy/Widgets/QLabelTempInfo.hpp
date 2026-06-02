@@ -1,6 +1,9 @@
 #pragma once
 
 #include <QWidget>
+#include <QStyle>
+#include <QStyleOption>
+#include <QPainter>
 #include <QString>
 #include <QLabel>
 #include <QtEasy/Widgets/QTempInfo.hpp>
@@ -58,6 +61,9 @@ namespace QtEasy {
             void setTempInfo(QString text);
 
             void setText(QString text);
+
+        protected:
+            void paintEvent(QPaintEvent *event) override;
         };
     }
 }

@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include <QStyle>
+#include <QStyleOption>
+#include <QPainter>
 #include <QMouseEvent>
 #include <QWindow>
 #include <QHBoxLayout>
@@ -57,6 +59,8 @@ namespace QtEasy {
             bool eventFilter(QObject *watched, QEvent *event) override;
 
             void mouseMoveEventWindow(QMouseEvent *event);
+
+            void paintEvent(QPaintEvent *event) override;
         };
     }
 }
