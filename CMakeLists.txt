@@ -41,3 +41,17 @@ target_link_libraries(QtEasy PUBLIC
 )
 
 target_compile_definitions(QtEasy PRIVATE QTEASY_LIBRARY)
+
+include(GNUInstallDirs)
+
+install(TARGETS QtEasy
+    EXPORT QtEasyTargets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+install(DIRECTORY src/QtEasy
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILES_MATCHING PATTERN "*.hpp"
+)

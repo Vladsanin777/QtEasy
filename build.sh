@@ -1,1 +1,6 @@
-rm -rf build && mkdir build && cd build && cmake .. && cmake --build .
+rm -rf build
+cmake -B build -S .
+
+cmake --build build
+
+sudo cmake --install build
