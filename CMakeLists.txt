@@ -27,6 +27,12 @@ set(PROJECT_SOURCES
     src/QtEasy/Widgets/QSystemsButtons.hpp
     src/QtEasy/Widgets/QTempInfo.cpp
     src/QtEasy/Widgets/QTempInfo.hpp
+    src/QtEasy/Widgets/QFileOperationButton.cpp
+    src/QtEasy/Widgets/QFileOperationButton.hpp
+    src/QtEasy/Widgets/QOpenButton.cpp
+    src/QtEasy/Widgets/QOpenButton.hpp
+    src/QtEasy/Widgets/QSaveButton.cpp
+    src/QtEasy/Widgets/QSaveButton.hpp
 )
 
 add_library(QtEasy SHARED ${PROJECT_SOURCES})
