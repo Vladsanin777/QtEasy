@@ -27,16 +27,28 @@ namespace QtEasy {
             setFixedSize(30, 30);
         }
 
-        QString QFileOperationButton::getInfo(void) {
+        bool QFileOperationButton::isFilePath(void) {
+            return !m_filePath.isEmpty();
+        }
+
+        QString QFileOperationButton::filePath(void) {
+            return m_filePath;
+        }
+
+        QString QFileOperationButton::info(void) {
             return m_info;
         }
 
-        QString QFileOperationButton::getExtention(void) {
+        QString QFileOperationButton::extention(void) {
             return m_extention;
         }
 
-        QString QFileOperationButton::getDirectory(void) {
+        QString QFileOperationButton::directory(void) {
             return m_directory;
+        }
+
+        void QFileOperationButton::setFilePath(QString filePath) {
+            m_filePath = filePath;
         }
 
         void QFileOperationButton::setInfo(QString info) {
@@ -49,6 +61,14 @@ namespace QtEasy {
 
         void QFileOperationButton::setDirectory(QString directory) {
             m_directory = directory;
+        }
+
+        void QFileOperationButton::mouseReleaseEvent(QMouseEvent *event) {
+            askUser();
+            
+            if (isFilePath()) {
+                QPushButton::mouseReleaseEvent(event); 
+            }
         }
     }
 }

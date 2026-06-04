@@ -11,6 +11,7 @@ namespace QtEasy {
             Q_OBJECT
 
         private:
+            QString m_filePath{};
             QString m_info{};
             QString m_extention{};
             QString m_directory{};
@@ -29,20 +30,29 @@ namespace QtEasy {
             QFileOperationButton(QString label = {}, QString text = {}, QString extention = {},
                     QString directory = {}, QWidget * parent = nullptr);
 
-            QString getInfo(void);
+            bool isFilePath(void);
 
-            QString getExtention(void);
+            QString filePath(void);
 
-            QString getDirectory(void);
+            QString info(void);
 
-            virtual QString getFilePath(void) = 0;
+            QString extention(void);
+
+            QString directory(void);
 
         public slots:
+            void setFilePath(QString filePath);
+
             void setInfo(QString text);
 
             void setExtention(QString extention);
 
             void setDirectory(QString directory);
+
+            virtual void askUser(void) = 0;
+
+        protected:
+            void mouseReleaseEvent(QMouseEvent *event);
         };
     }
 }

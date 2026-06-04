@@ -4,15 +4,15 @@
 #include <QString>
 #include <QMouseEvent>
 #include <QFileDialog>
-#include <QtEasy/Widgets/QSaveButton.hpp>
+#include <QtEasy/Widgets/QFileOperationButton.hpp>
 
 
 namespace QtEasy {
     namespace Widgets {
 
-        using QtEasy::Widgets::QSaveButton;
+        using QtEasy::Widgets::QFileOperationButton;
 
-        class QSaveAsButton : public QSaveButton {
+        class QSaveAsButton : public QFileOperationButton {
             Q_OBJECT
 
         private:
@@ -29,8 +29,10 @@ namespace QtEasy {
             QSaveAsButton(QString text = {}, QString extention = {},
                     QString directory = {}, QWidget * parent = nullptr);
 
-        protected:
-            void mouseReleaseEvent(QMouseEvent * event) override;
+        public slots:
+            void write(QString text);
+
+            void askUser(void) override;
         };
     }
 }

@@ -17,13 +17,9 @@ namespace QtEasy {
             setFixedSize(30, 30);
         }
 
-        QString QOpenButton::getFilePath(void) {
-            return m_filePath;
-        }
-
         QString QOpenButton::read(void) {
-            if (!m_filePath.isEmpty()) {
-                QFile file(m_filePath);
+            if (isFilePath()) {
+                QFile file(filePath());
                 if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
                     QTextStream in(&file);
                     return in.readAll();
@@ -32,15 +28,11 @@ namespace QtEasy {
             return QString{};
         }
 
-        void QOpenButton::mouseReleaseEvent(QMouseEvent *event) {
-            if (m_filePath.isEmpty()) {
-                m_filePath = QFileDialog::getOpenFileName(
-                        this, getInfo(), getDirectory(), getExtention());
-            }
-            
-            if (!m_filePath.isEmpty()) {
-                QPushButton::mouseReleaseEvent(event); 
-            }
+        void QOpenButton::askUser(void) {
+            QString filePath = QFileDialog::getOpenFileName(
+                    this, info(), directory(), extention());
+
+            setFilePath(filePath);
         }
     }
 }

@@ -15,26 +15,24 @@ namespace QtEasy {
         class QOpenButton : public QFileOperationButton {
             Q_OBJECT
 
-        private:
-            QString m_filePath{};
-
         public:
             QOpenButton(QWidget * parent = nullptr);
 
-            QOpenButton(QString text = {}, QWidget * parent = nullptr);
+            QOpenButton(QString label = {}, QWidget * parent = nullptr);
 
-            QOpenButton(QString text = {}, QString extention = {},
+            QOpenButton(QString label = {}, QString text = {}
                     QWidget * parent = nullptr);
 
-            QOpenButton(QString text = {}, QString extention = {},
+            QOpenButton(QString label, QString text = {},
+                    QString extention = {}, QWidget * parent = nullptr);
+
+            QOpenButton(QString label = {}, QString text = {}, QString extention = {},
                     QString directory = {}, QWidget * parent = nullptr);
 
-            QString getFilePath(void);
-
+        public slots:
             QString read(void);
 
-        protected:
-            void mouseReleaseEvent(QMouseEvent * event) override;
+            void askUser(void) override;
         };
     }
 }

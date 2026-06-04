@@ -13,31 +13,8 @@ namespace QtEasy {
 
         QSaveButton::QSaveButton(QString text, QString extention,
                 QString directory, QWidget * parent) :
-                QFileOperationButton{"🖫", text, extention, directory, this} {
+                QSaveAsButton{text, extention, directory, this} {
             setFixedSize(30, 30);
-        }
-
-        QString QSaveButton::getFilePath(void) {
-            return m_filePath;
-        }
-
-        void QSaveButton::write(QString text) {
-            if (!m_filePath.isEmpty()) {
-                QFile file(m_filePath);
-                if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                    QTextStream out(&file);
-                    out << text;
-                }
-            }
-        }
-
-        void QSaveButton::askUser(void) {
-            m_filePath = QFileDialog::getSaveFileName(
-                    this, getInfo(), getDirectory(), getExtention());
-        }
-
-        bool QSaveButton::isFilePath(void) {
-            return !m_filePath.isEmpty();
         }
 
         void QSaveButton::mouseReleaseEvent(QMouseEvent * event) {
