@@ -16,8 +16,7 @@ namespace QtEasy {
         public:
             QTitleBar(QWidget * parent = nullptr);
 
-            QTitleBar(QString title = {}, 
-                    QWidget * parent = nullptr);
+            QTitleBar(QString title, QWidget * parent = nullptr);
 
             QString text(void) override;
 

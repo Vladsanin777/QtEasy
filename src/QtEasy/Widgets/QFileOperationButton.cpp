@@ -7,22 +7,17 @@ namespace QtEasy {
                 QFileOperationButton{QString{}, parent} {}
 
         QFileOperationButton::QFileOperationButton(
-                QString label, QWidget * parent) :
-                QFileOperationButton{label, QString{}, parent} {}
+                QString caption, QWidget * parent) :
+                QFileOperationButton{caption, QString{}, parent} {}
 
         QFileOperationButton::QFileOperationButton(
-                QString label, QString info, QWidget * parent) :
-                QFileOperationButton{label, info, QString{}, parent} {}
+                QString caption, QString extention, QWidget * parent) :
+                QFileOperationButton{caption, extention, QString{}, parent} {}
 
         QFileOperationButton::QFileOperationButton(
-                QString label, QString info,
-                QString extention, QWidget * parent) :
-                QFileOperationButton{label, info, extention, QString{}, parent} {}
-
-        QFileOperationButton::QFileOperationButton(
-                QString label, QString info, QString extention,
+                QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QPushButton{label, this}, m_info{info}, m_extention{extention},
+                QPushButton{this}, m_caption{caption}, m_extention{extention},
                 m_directory{directory} {
             setFixedSize(30, 30);
         }
@@ -35,8 +30,8 @@ namespace QtEasy {
             return m_filePath;
         }
 
-        QString QFileOperationButton::info(void) {
-            return m_info;
+        QString QFileOperationButton::caption(void) {
+            return m_caption;
         }
 
         QString QFileOperationButton::extention(void) {
@@ -51,8 +46,8 @@ namespace QtEasy {
             m_filePath = filePath;
         }
 
-        void QFileOperationButton::setInfo(QString info) {
-            m_info = info;
+        void QFileOperationButton::setCaption(QString caption) {
+            m_caption = caption;
         }
 
         void QFileOperationButton::setExtention(QString extention) {

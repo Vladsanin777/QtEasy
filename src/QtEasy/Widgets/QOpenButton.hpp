@@ -18,16 +18,13 @@ namespace QtEasy {
         public:
             QOpenButton(QWidget * parent = nullptr);
 
-            QOpenButton(QString label = {}, QWidget * parent = nullptr);
+            QOpenButton(QString caption, QWidget * parent = nullptr);
 
-            QOpenButton(QString label = {}, QString text = {}
+            QOpenButton(QString caption, QString extention,
                     QWidget * parent = nullptr);
 
-            QOpenButton(QString label, QString text = {},
-                    QString extention = {}, QWidget * parent = nullptr);
-
-            QOpenButton(QString label = {}, QString text = {}, QString extention = {},
-                    QString directory = {}, QWidget * parent = nullptr);
+            QOpenButton(QString caption, QString extention,
+                    QString directory, QWidget * parent = nullptr);
 
         public slots:
             QString read(void);

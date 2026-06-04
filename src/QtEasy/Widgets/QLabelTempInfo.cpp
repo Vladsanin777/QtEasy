@@ -3,24 +3,22 @@
 
 namespace QtEasy {
     namespace Widgets {
-        QLabelTempInfo::QLabelTempInfo(
-                QWidget * parent) : QLabelTempInfo{LABEL, parent} {}
+        QLabelTempInfo::QLabelTempInfo(QWidget * parent) :
+                QLabelTempInfo{LABEL, parent} {}
 
-        QLabelTempInfo::QLabelTempInfo(
-                Mode mode, QWidget * parent) :
-                    QLabelTempInfo{QString{}, mode, parent} {}
+        QLabelTempInfo::QLabelTempInfo(Mode mode, QWidget * parent) :
+                QLabelTempInfo{QString{}, mode, parent} {}
 
-        QLabelTempInfo::QLabelTempInfo(
-                QString label, QWidget * parent) :
-                    QLabelTempInfo{label, QString{}, 
-                        QLabelTempInfo::Mode::LABEL, parent} {}
+        QLabelTempInfo::QLabelTempInfo(QString label, QWidget * parent) :
+                QLabelTempInfo{label, QString{}, 
+                    QLabelTempInfo::Mode::LABEL, parent} {}
 
-        QLabelTempInfo::QLabelTempInfo(
-                QString label, Mode mode, QWidget * parent) :
-                    QLabelTempInfo{label, QString{}, mode, parent} {}
+        QLabelTempInfo::QLabelTempInfo(QString label, Mode mode,
+                QWidget * parent) : QLabelTempInfo{label,
+                    QString{}, mode, parent} {}
 
-        QLabelTempInfo::QLabelTempInfo(
-                QString label, QString tempInfo, QWidget * parent) :
+        QLabelTempInfo::QLabelTempInfo(QString label,
+                QString tempInfo, QWidget * parent) :
                     QLabelTempInfo{label, tempInfo, 
                         QLabelTempInfo::Mode::LABEL, parent} {}
 

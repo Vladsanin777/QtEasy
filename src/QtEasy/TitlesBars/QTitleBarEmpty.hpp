@@ -27,20 +27,12 @@ namespace QtEasy {
         public:
             QTitleBarEmpty(QWidget * parent = nullptr);
 
-            QTitleBarEmpty(
-                    int functions = {
-                        QSystemsButtons::Functions::MIN |
-                        QSystemsButtons::Functions::MAX |
-                        QSystemsButtons::Functions::CLOSE
-                    }, QWidget * parent = nullptr);
+            QTitleBarEmpty(int functions, QWidget * parent = nullptr);
 
-            QTitleBarEmpty(QString title = {}, QWidget * parent = nullptr);
+            QTitleBarEmpty(QString title, QWidget * parent = nullptr);
 
-            QTitleBarEmpty(QString title = {}, int functions = {
-                        QSystemsButtons::Functions::MIN |
-                        QSystemsButtons::Functions::MAX |
-                        QSystemsButtons::Functions::CLOSE
-                    }, QWidget * parent = nullptr);
+            QTitleBarEmpty(QString title, int functions,
+                    QWidget * parent = nullptr);
 
             virtual QString text(void);
 

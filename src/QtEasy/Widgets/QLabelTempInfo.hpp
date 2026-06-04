@@ -32,18 +32,18 @@ namespace QtEasy {
         public:
             QLabelTempInfo(QWidget * parent = nullptr);
 
-            QLabelTempInfo(Mode mode = {LABEL}, QWidget * parent = nullptr);
+            QLabelTempInfo(Mode mode, QWidget * parent = nullptr);
 
-            QLabelTempInfo(QString label = {}, QWidget * parent = nullptr);
+            QLabelTempInfo(QString label, QWidget * parent = nullptr);
 
-            QLabelTempInfo(QString label = {}, Mode mode = {LABEL},
+            QLabelTempInfo(QString label, Mode mode,
                     QWidget * parent = nullptr);
 
-            QLabelTempInfo(QString label = {}, QString tempInfo = {},
+            QLabelTempInfo(QString label, QString tempInfo,
                     QWidget * parent = nullptr);
 
-            QLabelTempInfo(QString label = {}, QString tempInfo = {},
-                    Mode mode = {LABEL}, QWidget * parent = nullptr);
+            QLabelTempInfo(QString label, QString tempInfo,
+                    Mode mode, QWidget * parent = nullptr);
 
             Mode mode(void);
 

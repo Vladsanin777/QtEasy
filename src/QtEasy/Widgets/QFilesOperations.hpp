@@ -1,3 +1,5 @@
+#pragma once
+
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QtEasy/Widgets/QOpenButton.hpp>
@@ -22,28 +24,35 @@ namespace QtEasy {
             QSaveAsButton * m_saveAs{nullptr};
 
         public:
-            QFilesOperations(QWidget * parent = nullptr) :
-                    QWidget{parent} {
-                m_open = new QOpenButton{this};
-                m_save = new QSaveButton{this};
-                m_saveAs = new QSaveAsButton{this};
+            QFilesOperations(QWidget * parent = nullptr);
 
-                m_layout = new QHBoxLayout{this};
+            QFilesOperations(QString captionOpen, QString captionSave,
+                    QString captionSaveAs, QWidget * parent = nullptr);
 
-                m_layout->addWidget(m_open);
-                m_layout->addWidget(m_save);
-                m_layout->addWidget(m_saveAs);
-                
-                setLayout(m_layout);
-            }
+            QFilesOperations(QString captionOpen, QString captionSave,
+                    QString captionSaveAs, QString extention,
+                    QWidget * parent = nullptr);
 
-            void setSpacing(int space) {
-                m_layout->setSpacing(space);
-            }
+            QFilesOperations(QString captionOpen, QString captionSave,
+                    QString captionSaveAs, QString extention,
+                    QString directory, QWidget * parent = nullptr);
 
-            int spacing(void) {
-                return m_layout->spacing();
-            }
+        public:
+            void setSpacing(int space);
+
+            int spacing(void);
+
+        signals:
+            void opened();
+
+            void saved();
+
+        private slots:
+            void onClickOpen(void);
+
+            void onClickSave(void);
+
+            void onClickSaveAs(void);
         };
     }
 }

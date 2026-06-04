@@ -21,13 +21,13 @@ namespace QtEasy {
         public:
             QSaveAsButton(QWidget * parent = nullptr);
 
-            QSaveAsButton(QString text = {}, QWidget * parent = nullptr);
+            QSaveAsButton(QString caption, QWidget * parent = nullptr);
 
-            QSaveAsButton(QString text = {}, QString extention = {},
+            QSaveAsButton(QString caption, QString extention,
                     QWidget * parent = nullptr);
 
-            QSaveAsButton(QString text = {}, QString extention = {},
-                    QString directory = {}, QWidget * parent = nullptr);
+            QSaveAsButton(QString caption, QString extention,
+                    QString directory, QWidget * parent = nullptr);
 
         public slots:
             void write(QString text);

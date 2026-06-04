@@ -33,9 +33,9 @@ namespace QtEasy {
         public:
             QTempInfo(QWidget * parent = nullptr);
 
-            QTempInfo(QString label = {}, QWidget * parent = nullptr);
+            QTempInfo(QString label, QWidget * parent = nullptr);
 
-            QTempInfo(QString label = {}, int functions = {CLOSE | COPY},
+            QTempInfo(QString label, int functions,
                     QWidget * parent = nullptr);
 
             QString text();

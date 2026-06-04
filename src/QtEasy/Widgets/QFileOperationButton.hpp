@@ -12,29 +12,26 @@ namespace QtEasy {
 
         private:
             QString m_filePath{};
-            QString m_info{};
+            QString m_caption{};
             QString m_extention{};
             QString m_directory{};
 
         public:
             QFileOperationButton(QWidget * parent = nullptr);
 
-            QFileOperationButton(QString label = {}, QWidget * parent = nullptr);
+            QFileOperationButton(QString caption, QWidget * parent = nullptr);
 
-            QFileOperationButton(QString label = {}, QString text = {},
+            QFileOperationButton(QString caption, QString extention,
                     QWidget * parent = nullptr);
 
-            QFileOperationButton(QString label = {}, QString text = {},
-                    QString extention = {}, QWidget * parent = nullptr);
-
-            QFileOperationButton(QString label = {}, QString text = {}, QString extention = {},
-                    QString directory = {}, QWidget * parent = nullptr);
+            QFileOperationButton(QString caption, QString extention,
+                    QString directory, QWidget * parent = nullptr);
 
             bool isFilePath(void);
 
             QString filePath(void);
 
-            QString info(void);
+            QString caption(void);
 
             QString extention(void);
 
@@ -43,7 +40,7 @@ namespace QtEasy {
         public slots:
             void setFilePath(QString filePath);
 
-            void setInfo(QString text);
+            void setCaption(QString text);
 
             void setExtention(QString extention);
 

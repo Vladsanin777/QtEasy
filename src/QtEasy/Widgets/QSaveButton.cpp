@@ -5,15 +5,16 @@ namespace QtEasy {
         QSaveButton::QSaveButton(QWidget * parent) :
                 QSaveButton{QString{}, parent} {}
 
-        QSaveButton::QSaveButton(QString text, QWidget * parent) :
-                QSaveButton{text, QString{}, parent} {}
+        QSaveButton::QSaveButton(QString caption, QWidget * parent) :
+                QSaveButton{caption, QString{}, parent} {}
 
-        QSaveButton::QSaveButton(QString text, QString extention, QWidget * parent) :
-                QSaveButton{text, extention, QString{}, parent} {}
+        QSaveButton::QSaveButton(QString caption, QString extention, QWidget * parent) :
+                QSaveButton{caption, extention, QString{}, parent} {}
 
-        QSaveButton::QSaveButton(QString text, QString extention,
+        QSaveButton::QSaveButton(QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QSaveAsButton{text, extention, directory, this} {
+                QSaveAsButton{caption, extention, directory, this} {
+            setText("🖫");
             setFixedSize(30, 30);
         }
 

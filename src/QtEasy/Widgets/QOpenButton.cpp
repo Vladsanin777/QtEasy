@@ -5,15 +5,16 @@ namespace QtEasy {
         QOpenButton::QOpenButton(QWidget * parent) :
                 QOpenButton{QString{}, parent} {}
 
-        QOpenButton::QOpenButton(QString text, QWidget * parent) :
-                QOpenButton{text, QString{}, parent} {}
+        QOpenButton::QOpenButton(QString caption, QWidget * parent) :
+                QOpenButton{caption, QString{}, parent} {}
 
-        QOpenButton::QOpenButton(QString text, QString extention, QWidget * parent) :
-                QOpenButton{text, extention, QString{}, parent} {}
+        QOpenButton::QOpenButton(QString caption, QString extention, QWidget * parent) :
+                QOpenButton{caption, extention, QString{}, parent} {}
 
-        QOpenButton::QOpenButton(QString text, QString extention,
+        QOpenButton::QOpenButton(QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QFileOperationButton{"🗁", text, extention, directory, this} {
+                QFileOperationButton{caption, extention, directory, this} {
+            setText("🗁");
             setFixedSize(30, 30);
         }
 
@@ -30,7 +31,7 @@ namespace QtEasy {
 
         void QOpenButton::askUser(void) {
             QString filePath = QFileDialog::getOpenFileName(
-                    this, info(), directory(), extention());
+                    this, caption(), directory(), extention());
 
             setFilePath(filePath);
         }

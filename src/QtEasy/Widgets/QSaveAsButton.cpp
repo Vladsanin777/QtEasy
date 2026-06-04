@@ -5,15 +5,17 @@ namespace QtEasy {
         QSaveAsButton::QSaveAsButton(QWidget * parent) :
                 QSaveAsButton{QString{}, parent} {}
 
-        QSaveAsButton::QSaveAsButton(QString text, QWidget * parent) :
-                QSaveAsButton{text, QString{}, parent} {}
+        QSaveAsButton::QSaveAsButton(QString caption, QWidget * parent) :
+                QSaveAsButton{caption, QString{}, parent} {}
 
-        QSaveAsButton::QSaveAsButton(QString text, QString extention, QWidget * parent) :
-                QSaveAsButton{text, extention, QString{}, parent} {}
+        QSaveAsButton::QSaveAsButton(QString caption,
+                QString extention, QWidget * parent) :
+                QSaveAsButton{caption, extention, QString{}, parent} {}
 
-        QSaveAsButton::QSaveAsButton(QString text, QString extention,
+        QSaveAsButton::QSaveAsButton(QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QFileOperationButton{text, extention, directory, this} {
+                QFileOperationButton{caption, extention, directory, this} {
+            setText("🞢");
             setFixedSize(30, 30);
         }
 
@@ -29,7 +31,7 @@ namespace QtEasy {
 
         void QSaveAsButton::askUser(void) {
             QString filePath = QFileDialog::getSaveFileName(
-                    this, info(), directory(), extention());
+                    this, caption(), directory(), extention());
             
             setFilePath(filePath);
         }

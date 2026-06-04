@@ -20,6 +20,11 @@ set(PROJECT_SOURCES
     src/QtEasy/TitlesBars/QTitleBarEmpty.hpp
     src/QtEasy/TitlesBars/QTitleBarTempInfo.cpp
     src/QtEasy/TitlesBars/QTitleBarTempInfo.hpp
+    src/QtEasy/TitlesBars/QTitleBarFilesOperations.cpp
+    src/QtEasy/TitlesBars/QTitleBarFilesOperations.hpp
+    src/QtEasy/TitlesBars/QTitleBarTempInfoFilesOperations.cpp
+    src/QtEasy/TitlesBars/QTitleBarTempInfoFilesOperations.hpp
+
     
     src/QtEasy/Widgets/QLabelTempInfo.cpp
     src/QtEasy/Widgets/QLabelTempInfo.hpp
@@ -33,8 +38,8 @@ set(PROJECT_SOURCES
     src/QtEasy/Widgets/QOpenButton.hpp
     src/QtEasy/Widgets/QSaveButton.cpp
     src/QtEasy/Widgets/QSaveButton.hpp
-    src/QtEasy/Widgets/QSaveAsButton.hpp
     src/QtEasy/Widgets/QSaveAsButton.cpp
+    src/QtEasy/Widgets/QSaveAsButton.hpp
 )
 
 add_library(QtEasy SHARED ${PROJECT_SOURCES})
