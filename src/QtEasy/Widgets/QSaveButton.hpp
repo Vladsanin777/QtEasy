@@ -33,6 +33,10 @@ namespace QtEasy {
 
             void write(QString text);
 
+            void askUser(void);
+
+            bool isFilePath(void);
+
         protected:
             void mouseReleaseEvent(QMouseEvent * event) override;
         };

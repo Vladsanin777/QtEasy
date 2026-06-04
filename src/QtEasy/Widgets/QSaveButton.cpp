@@ -31,13 +31,21 @@ namespace QtEasy {
             }
         }
 
+        void QSaveButton::askUser(void) {
+            m_filePath = QFileDialog::getSaveFileName(
+                    this, getInfo(), getDirectory(), getExtention());
+        }
+
+        bool QSaveButton::isFilePath(void) {
+            return !m_filePath.isEmpty();
+        }
+
         void QSaveButton::mouseReleaseEvent(QMouseEvent * event) {
-            if (m_filePath.isEmpty()) {
-                m_filePath = QFileDialog::getSaveFileName(
-                        this, getInfo(), getDirectory(), getExtention());
+            if (!isFilePath()) {
+                askUser();
             }
             
-            if (!m_filePath.isEmpty()) {
+            if (isFilePath()) {
                 QPushButton::mouseReleaseEvent(event); 
             }
         }
