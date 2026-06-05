@@ -17,7 +17,7 @@ namespace QtEasy {
         QFileOperationButton::QFileOperationButton(
                 QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QPushButton{this}, m_caption{caption}, m_extention{extention},
+                QPushButton{parent}, m_caption{caption}, m_extention{extention},
                 m_directory{directory} {
             setFixedSize(30, 30);
         }
@@ -62,7 +62,7 @@ namespace QtEasy {
             askUser();
             
             if (isFilePath()) {
-                QPushButton::mouseReleaseEvent(event); 
+                emit clicked();
             }
         }
     }

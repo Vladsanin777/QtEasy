@@ -42,6 +42,10 @@ namespace QtEasy {
 
             int spacing(void);
 
+            QString read(void);
+
+            void write(QString text);
+
         signals:
             void opened();
 

@@ -38,6 +38,9 @@ namespace QtEasy {
                     QString captinSaveAs, QString extension,
                     QString direction, QWidget * parent = nullptr);
 
+            QString read(void);
+
+            void write(QString text);
         signals:
             void opened(void);
 

@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
     src/QtEasy/Widgets/QSystemsButtons.hpp
     src/QtEasy/Widgets/QTempInfo.cpp
     src/QtEasy/Widgets/QTempInfo.hpp
+    src/QtEasy/Widgets/QFilesOperations.cpp
+    src/QtEasy/Widgets/QFilesOperations.hpp
     src/QtEasy/Widgets/QFileOperationButton.cpp
     src/QtEasy/Widgets/QFileOperationButton.hpp
     src/QtEasy/Widgets/QOpenButton.cpp

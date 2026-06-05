@@ -42,5 +42,13 @@ namespace QtEasy {
             connect(m_filesOperations, &QFilesOperations::saved,
                     this, &QTitleBarFilesOperations::saved);
         }
+
+        QString QTitleBarFilesOperations::read(void) {
+            return m_filesOperations->read();
+        }
+
+        void QTitleBarFilesOperations::write(QString text) {
+            m_filesOperations->write(text);
+        }
     }
 }

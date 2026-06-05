@@ -8,17 +8,21 @@ namespace QtEasy {
 
         QFilesOperations::QFilesOperations(QString captionOpen,
                 QString captionSave, QString captionSaveAs, QWidget * parent) :
-                QWidget{captionOpen, captionSave, captionSaveAs, parent} {}
+                QFilesOperations{captionOpen, captionSave,
+                    captionSaveAs, QString{}, parent} {}
 
         QFilesOperations::QFilesOperations(QString captionOpen,
                 QString captionSave, QString captionSaveAs,
                 QString extention, QWidget * parent) :
-                QSaveButton{text, extention, QString{}, parent} {}
+                QFilesOperations{captionOpen, captionSave,
+                    captionSaveAs, extention, QString{}, parent} {}
 
         QFilesOperations::QFilesOperations(QString captionOpen,
                 QString captionSave, QString captionSaveAs,
                 QString extention, QString directory,
                 QWidget * parent) : QWidget{parent} {
+            setFixedHeight(30);
+            
             m_open = new QOpenButton{captionOpen, extention, directory, this};
             m_save = new QSaveButton{captionSave, extention, directory, this};
             m_saveAs = new QSaveAsButton{captionSaveAs, extention, directory, this};
@@ -28,12 +32,13 @@ namespace QtEasy {
             m_layout->addWidget(m_open);
             m_layout->addWidget(m_save);
             m_layout->addWidget(m_saveAs);
-            
+            m_layout->setContentsMargins(0, 0, 0, 0);
+            m_layout->setSpacing(5);
             setLayout(m_layout);
 
-            connect(m_open, &QPushButton::clicked, this, &QFilesOperations::onClickOpen)
-            connect(m_save, &QPushButton::clicked, this, &QFilesOperations::onClickSave)
-            connect(m_saveAs, &QPushButton::clicked, this, &QFilesOperations::onClickSaveAs)
+            connect(m_open, &QPushButton::clicked, this, &QFilesOperations::onClickOpen);
+            connect(m_save, &QPushButton::clicked, this, &QFilesOperations::onClickSave);
+            connect(m_saveAs, &QPushButton::clicked, this, &QFilesOperations::onClickSaveAs);
         }
 
         void QFilesOperations::onClickOpen(void) {
@@ -63,6 +68,14 @@ namespace QtEasy {
 
         int QFilesOperations::spacing(void) {
             return m_layout->spacing();
+        }
+
+        QString QFilesOperations::read(void) {
+            return m_open->read();
+        }
+
+        void QFilesOperations::write(QString text) {
+            m_save->write(text);
         }
     }
 }

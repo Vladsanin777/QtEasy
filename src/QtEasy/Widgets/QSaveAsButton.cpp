@@ -14,7 +14,7 @@ namespace QtEasy {
 
         QSaveAsButton::QSaveAsButton(QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QFileOperationButton{caption, extention, directory, this} {
+                QFileOperationButton{caption, extention, directory, parent} {
             setText("🞢");
             setFixedSize(30, 30);
         }

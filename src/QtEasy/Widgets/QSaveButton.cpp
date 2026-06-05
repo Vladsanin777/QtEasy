@@ -13,7 +13,7 @@ namespace QtEasy {
 
         QSaveButton::QSaveButton(QString caption, QString extention,
                 QString directory, QWidget * parent) :
-                QSaveAsButton{caption, extention, directory, this} {
+                QSaveAsButton{caption, extention, directory, parent} {
             setText("🖫");
             setFixedSize(30, 30);
         }
@@ -24,7 +24,7 @@ namespace QtEasy {
             }
             
             if (isFilePath()) {
-                QPushButton::mouseReleaseEvent(event); 
+                emit clicked();
             }
         }
     }
