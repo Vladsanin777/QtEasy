@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(BUILD_SHARED_LIBS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Qml)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Qml Quick)
 
 set(PROJECT_SOURCES
     src/QtEasy/TitlesBars/QTitleBar.cpp
@@ -26,6 +26,8 @@ set(PROJECT_SOURCES
     src/QtEasy/TitlesBars/QTitleBarTempInfoFilesOperations.hpp
 
     
+    src/QtEasy/Widgets/QPaintArea.cpp
+    src/QtEasy/Widgets/QPaintArea.hpp
     src/QtEasy/Widgets/QLabelTempInfo.cpp
     src/QtEasy/Widgets/QLabelTempInfo.hpp
     src/QtEasy/Widgets/QSystemsButtons.cpp
@@ -54,6 +56,7 @@ target_link_libraries(QtEasy PUBLIC
     Qt6::Core
     Qt6::Widgets
     Qt6::Qml
+    Qt6::Quick
 )
 
 target_compile_definitions(QtEasy PRIVATE QTEASY_LIBRARY)
