@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QString>
 #include <QtEasy/Widgets/QFilesOperations.hpp>
@@ -14,6 +15,7 @@ namespace QtEasy {
 
         class QTitleBarTempInfoFilesOperations : public QTitleBarTempInfo {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QFilesOperations * m_filesOperations{nullptr};

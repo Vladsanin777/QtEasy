@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QString>
 #include <QStyle>
@@ -13,6 +14,7 @@ namespace QtEasy {
     namespace Widgets {
         class QSystemsButtons : public QWidget {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QHBoxLayout * m_layout{nullptr};

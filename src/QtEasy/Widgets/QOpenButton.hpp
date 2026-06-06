@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QString>
 #include <QMouseEvent>
@@ -14,6 +15,7 @@ namespace QtEasy {
 
         class QOpenButton : public QFileOperationButton {
             Q_OBJECT
+            QML_ELEMENT
 
         public:
             QOpenButton(QWidget * parent = nullptr);

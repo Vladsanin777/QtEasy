@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QString>
 #include <QStyle>
 #include <QLabel>
@@ -15,6 +16,7 @@ namespace QtEasy {
 
         class QTitleBarTempInfo : public QTitleBarEmpty {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QLabelTempInfo * m_title{nullptr};

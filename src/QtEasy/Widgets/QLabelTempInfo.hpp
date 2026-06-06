@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QStyle>
 #include <QStyleOption>
@@ -16,6 +17,7 @@ namespace QtEasy {
 
         class QLabelTempInfo : public QWidget {
             Q_OBJECT
+            QML_ELEMENT
 
         public:
             enum Mode {

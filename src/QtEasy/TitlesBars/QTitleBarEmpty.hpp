@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QStyle>
 #include <QStyleOption>
@@ -17,6 +18,7 @@ namespace QtEasy {
 
         class QTitleBarEmpty : public QWidget {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QHBoxLayout * m_layout{nullptr};

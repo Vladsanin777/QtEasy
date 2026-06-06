@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QString>
 #include <QStyle>
@@ -16,6 +17,7 @@ namespace QtEasy {
     namespace Widgets {
         class QTempInfo : public QWidget {
             Q_OBJECT
+            QML_ELEMENT
 
         public:
             enum Functions {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QLabel>
 #include <QtEasy/TitlesBars/QTitleBarEmpty.hpp>
@@ -9,6 +10,7 @@ namespace QtEasy {
     namespace TitlesBars {
         class QTitleBar : public QTitleBarEmpty {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QLabel * m_title{nullptr};

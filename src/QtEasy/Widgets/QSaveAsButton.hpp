@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QString>
 #include <QMouseEvent>
@@ -14,6 +15,7 @@ namespace QtEasy {
 
         class QSaveAsButton : public QFileOperationButton {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QString m_filePath{};

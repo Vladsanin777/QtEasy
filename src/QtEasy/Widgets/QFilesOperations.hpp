@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QtEasy/Widgets/QOpenButton.hpp>
@@ -16,6 +17,7 @@ namespace QtEasy {
 
         class QFilesOperations : public QWidget {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QHBoxLayout * m_layout{nullptr};

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtQmlIntegration/qqmlintegration.h>
 #include <QPushButton>
 #include <QString>
 #include <QWidget>
@@ -9,6 +10,7 @@ namespace QtEasy {
     namespace Widgets {
         class QFileOperationButton : public QPushButton {
             Q_OBJECT
+            QML_ELEMENT
 
         private:
             QString m_filePath{};

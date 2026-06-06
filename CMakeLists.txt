@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(BUILD_SHARED_LIBS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Qml)
 
 set(PROJECT_SOURCES
     src/QtEasy/TitlesBars/QTitleBar.cpp
@@ -53,6 +53,7 @@ target_include_directories(QtEasy PUBLIC
 target_link_libraries(QtEasy PUBLIC 
     Qt6::Core
     Qt6::Widgets
+    Qt6::Qml
 )
 
 target_compile_definitions(QtEasy PRIVATE QTEASY_LIBRARY)
