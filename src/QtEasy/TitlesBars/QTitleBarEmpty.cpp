@@ -53,22 +53,41 @@ namespace QtEasy {
             m_layout->addWidget(widget);
         }
 
-        void QTitleBarEmpty::mousePressEventWindow(QMouseEvent *event) {
+        void QTitleBarEmpty::mousePressEvent(QMouseEvent *event) {
             QWindow * win = window()->windowHandle();
-            if (event->button() == Qt::LeftButton) {
-                if (m_resizeEdge != 0) {
-                    if (win) {
-                        win->startSystemResize(m_resizeEdge);
-                        event->accept();
-                        return;
+            switch (event->button()) {
+                case Qt::LeftButton:
+                    if (m_resizeEdge != 0) {
+                        if (win) {
+                            win->startSystemResize(m_resizeEdge);
+                            event->accept();
+                            return;
+                        }
+                    } else {
+                        if (win) {
+                            win->startSystemMove();
+                            event->accept();
+                            return;
+                        }
                     }
-                }
-            
-                if (win) {
-                    win->startSystemMove();
-                    event->accept();
-                    return;
-                }
+                    break;
+            }
+
+            QWidget::mousePressEvent(event);
+        }
+
+        void QTitleBarEmpty::mousePressEventWindow(QMouseEvent * event) {
+            QWindow * win = window()->windowHandle();
+            switch (event->button()) {
+                case Qt::LeftButton:
+                    if (m_resizeEdge != 0) {
+                        if (win) {
+                            win->startSystemResize(m_resizeEdge);
+                            event->accept();
+                            return;
+                        }
+                    }
+                    break;
             }
 
             QWidget::mousePressEvent(event);
@@ -86,22 +105,6 @@ namespace QtEasy {
             } else {
                 QWidget::mouseDoubleClickEvent(event);
             }
-        }
-
-        bool QTitleBarEmpty::eventFilter(QObject *watched, QEvent *event) {
-            if (watched == window()) {
-                if (event->type() == QEvent::MouseMove) {
-                    QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-                    
-                    mouseMoveEventWindow(mouseEvent);
-                } else if (event->type() == QEvent::MouseButtonPress) {
-                    QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-                    
-                    mousePressEventWindow(mouseEvent);
-                }
-            }
-            
-            return QWidget::eventFilter(watched, event);
         }
 
         void QTitleBarEmpty::mouseMoveEventWindow(QMouseEvent *event) {
@@ -141,6 +144,27 @@ namespace QtEasy {
             }
 
             QWidget::mouseMoveEvent(event);
+        }
+
+        bool QTitleBarEmpty::eventFilter(QObject *watched, QEvent *event) {
+            if (watched == window()) {
+                switch (event->type()) {
+                    case QEvent::MouseMove: {
+                        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+
+                        mouseMoveEventWindow(mouseEvent);
+                        break;
+                    }
+                    case QEvent::MouseButtonPress: {
+                        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+
+                        mousePressEventWindow(mouseEvent);
+                        break;
+                    }
+                }
+            }
+            
+            return QWidget::eventFilter(watched, event);
         }
 
         void QTitleBarEmpty::paintEvent(QPaintEvent *event) {

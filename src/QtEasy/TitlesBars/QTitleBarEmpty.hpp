@@ -46,15 +46,17 @@ namespace QtEasy {
             void addWidget(QWidget * widget);
 
         protected:
+            void mousePressEvent(QMouseEvent *event) override;
+
             void mousePressEventWindow(QMouseEvent *event);
 
             void mouseDoubleClickEvent(QMouseEvent *event) override;
 
-            bool eventFilter(QObject *watched, QEvent *event) override;
-
             void mouseMoveEventWindow(QMouseEvent *event);
 
             void paintEvent(QPaintEvent *event) override;
+
+            bool eventFilter(QObject *watched, QEvent *event) override;
         };
     }
 }
